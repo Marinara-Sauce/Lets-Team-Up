@@ -32,4 +32,4 @@ build/
 .vscode/
 
 ### JSON Database ###
-Users.json
+data/Users.json
