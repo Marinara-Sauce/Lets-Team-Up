@@ -74,7 +74,7 @@ public class UserDAO
         return getUsersArray(null);
     }
 
-    private User[] getUsersArray(String containsName)
+    public User[] getUsersArray(String containsName)
     {
         if (containsName == null)
             return (User[]) users.values().toArray();
