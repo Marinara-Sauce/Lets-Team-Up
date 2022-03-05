@@ -11,11 +11,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.letsteamup.api.letsteamupapi.model.User;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * DAO for the User JSON file
  */
-public class UserDAO 
+@Service
+@Repository
+public class UserDAOFile 
 {
     private Map<Integer, User> users;
 
@@ -24,7 +28,7 @@ public class UserDAO
 
     private static int nextId;
 
-    public UserDAO(@Value("${user_list.file}") String filename, ObjectMapper mapper) throws IOException
+    public UserDAOFile(@Value("${user_list.file}") String filename, ObjectMapper mapper) throws IOException
     {
         this.filename = filename;
         this.mapper = mapper;

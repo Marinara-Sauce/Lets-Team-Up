@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.letsteamup.api.letsteamupapi.model.User;
-import com.letsteamup.api.letsteamupapi.persistence.UserDAO;
+import com.letsteamup.api.letsteamupapi.persistence.UserDAOFile;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +26,9 @@ public class UserController
 
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
 
-    private UserDAO userDao;
+    private UserDAOFile userDao;
 
-    public UserController(UserDAO userDao)
+    public UserController(UserDAOFile userDao)
     {
         this.userDao = userDao;
     }
