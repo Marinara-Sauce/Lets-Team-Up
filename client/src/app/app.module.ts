@@ -9,19 +9,34 @@ import { CreateAccountComponent } from './components/create-account/create-accou
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { LoginReminderComponent } from './components/login-reminder/login-reminder.component';
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'createaccount', component: CreateAccountComponent},
+  {path: 'editaccount', component: EditUserComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    EditUserComponent,
+    HomeComponent,
+    LoginReminderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

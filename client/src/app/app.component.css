@@ -1,3 +1,15 @@
-body {
+* {
     font-family: "Poppins", sans-serif;
+}
+
+header {
+    float: top;
+}
+
+body {
+    margin-top: 75px;
+}
+
+footer {
+    float: bottom;
 }

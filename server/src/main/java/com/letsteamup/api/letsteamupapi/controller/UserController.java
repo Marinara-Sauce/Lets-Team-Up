@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -75,25 +74,6 @@ public class UserController
         User[] users = userDao.getUsersArray(null);
 
         return new ResponseEntity<User[]>(users, HttpStatus.OK);
-    }
-
-    /**
-     * Fetches a user with an ID
-     * 
-     * @param id the id
-     * @return OK if the user is found, NOT_FOUND if they don't exist
-     */
-    @GetMapping("/id={}")
-    public ResponseEntity<User> getUser(@RequestParam int id)
-    {
-        LOG.info("GET /user/id=" + id);
-
-        User user = userDao.getUser(id);
-
-        if (user == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        
-        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     /**

@@ -25,10 +25,16 @@ export class UserAccountsService {
   private user!: User;
   private subject = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+  }
+
+  getLoggedInUser(): User {
+    return this.user;
+  }
 
   setUser(user: any): void {
     this.user = user;
+    localStorage.setItem('users', JSON.stringify(user))
     this.subject.next(this.user);
   }
 
@@ -48,11 +54,15 @@ export class UserAccountsService {
       password: enteredPassword
     }
 
-    console.log(loginAttempt);
     return this.http.post<User>(url, loginAttempt, httpOptions);
+  }
+
+  editAccount(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user, httpOptions);
   }
 
   logOut(): void {
     this.setUser(null);
+    localStorage.clear();
   }
 }

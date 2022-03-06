@@ -1,0 +1,47 @@
+<div class="div-container" *ngIf="currentUser">
+    <h1>Edit Account</h1>
+    
+    <div class="edit-account-contianer">
+        <form class="edit-account-form" (ngSubmit)="editAccount()">
+
+            <div class="main">
+
+                <h2>Account Information</h2>
+
+                <label for="skills">Username</label>
+                <input type="text" *ngIf="currentUser.name" name="text" [(ngModel)]="username" id="username" placeholder="{{currentUser.name}}" class="field" />
+                <input type="text" *ngIf="!currentUser.name" name="text" [(ngModel)]="username" id="username" placeholder="{{currentUser.name}}" class="field" />
+                
+                <label for="skills">Skills</label>
+                <input type="text" *ngIf="currentUser.skills" name="text" [(ngModel)]="skills" id="skills" placeholder="{{currentUser.skills}}" class="field" />
+                <input type="text" *ngIf="!currentUser.skills" name="text" [(ngModel)]="skills" id="skills" placeholder="Skills" class="field" />
+    
+                <label for="email">Email</label>
+                <input type="text" *ngIf="currentUser.email" name="text" [(ngModel)]="email" id="email" placeholder="{{currentUser.email}}" class="field" />
+                <input type="text" *ngIf="!currentUser.email" name="text" [(ngModel)]="email" id="email" placeholder="Email" class="field" />
+            </div>
+
+            <div class="socials">
+
+                <h2>Socials</h2>
+
+                <label for="linkedin">LinkedIn</label>
+                <input type="text" *ngIf="currentUser.linkedin" name="linkedin" [(ngModel)]="linkedIn" id="linkedIn" placeholder="{{currentUser.linkedin}}" class="field" />
+                <input type="text" *ngIf="!currentUser.linkedin" name="linkedin" [(ngModel)]="linkedIn" id="linkedIn" placeholder="LinkedIn URL" class="field" />
+
+                <label for="twitter">Twitter</label>
+                <input type="text" *ngIf="currentUser.twitter" name="text" [(ngModel)]="twitter" id="twitter" placeholder="{{currentUser.twitter}}" class="field" />
+                <input type="text" *ngIf="!currentUser.twitter" name="text" [(ngModel)]="twitter" id="twitter" placeholder="Twitter URL" class="field" />
+
+                <label for="github">GitHub</label>
+                <input type="text" *ngIf="currentUser.github" name="text" [(ngModel)]="github" id="github" placeholder="{{currentUser.github}}" class="field" />
+                <input type="text" *ngIf="!currentUser.github" [(ngModel)]="github" id="github" placeholder="Github URL" class="field" />
+
+            </div>
+
+            <input type="submit" value="Save Changes" class="btn">
+        </form>
+    </div>
+</div>
+
+<app-login-reminder *ngIf="!currentUser"></app-login-reminder>
