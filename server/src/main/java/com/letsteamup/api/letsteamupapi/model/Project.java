@@ -19,13 +19,13 @@ public class Project
     @JsonProperty String skillsNeeded;
 
     // -- Defined on creation -- //
-    @JsonProperty User owner;
+    @JsonProperty String owner;
 
     // -- Defined through updates -- //
-    @JsonProperty List<User> team;
+    @JsonProperty String team;
 
     public Project(@JsonProperty int id, @JsonProperty String title, @JsonProperty String description, @JsonProperty String elevatorPitch,
-                    @JsonProperty User owner, @JsonProperty String skillsNeeded)
+                    @JsonProperty String owner, @JsonProperty String skillsNeeded)
     {
         this.id = id;
         this.title = title;
@@ -80,19 +80,19 @@ public class Project
         this.skillsNeeded = skillsNeeded;
     }
 
-    public User getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
-    public List<User> getTeam() {
+    public String getTeam() {
         return team;
     }
 
-    public void setTeam(List<User> team) {
+    public void setTeam(String team) {
         this.team = team;
     }
 }

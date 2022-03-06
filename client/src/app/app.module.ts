@@ -14,11 +14,15 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginReminderComponent } from './components/login-reminder/login-reminder.component';
+import { ProjectComponent } from './components/project/project.component';
+import { CreateProjectComponent } from './components/create-project/create-project.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'createaccount', component: CreateAccountComponent},
-  {path: 'editaccount', component: EditUserComponent}
+  {path: 'editaccount', component: EditUserComponent},
+  {path: 'project', component: ProjectComponent},
+  {path: 'createproject', component: CreateProjectComponent}
 ]
 
 @NgModule({
@@ -29,7 +33,9 @@ const appRoutes: Routes = [
     CreateAccountComponent,
     EditUserComponent,
     HomeComponent,
-    LoginReminderComponent
+    LoginReminderComponent,
+    ProjectComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,

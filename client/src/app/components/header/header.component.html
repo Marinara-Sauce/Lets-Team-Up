@@ -2,6 +2,7 @@
     <a href="/" class="active">Home</a>
     <a href="/createaccount" *ngIf="!currentUser">Create Account</a>
     <a href="/editaccount" *ngIf="currentUser">Edit Account</a>
+    <a href="/createproject" *ngIf="currentUser">Create Project</a>
 
     <div class="login-contianer" *ngIf="!currentUser">
         <form class="login-form">

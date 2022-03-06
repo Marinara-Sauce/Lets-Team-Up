@@ -1,0 +1,21 @@
+<div class="div-container">
+    <h1>Create Project</h1>
+    
+    <div class="create-account-contianer">
+        <form class="create-account-form" (ngSubmit)="createProject()">
+            <label for="username">Project Title</label>
+            <input type="text" name="username" [(ngModel)]="title" id="title" placeholder="Project Title" class="field" />
+
+            <label for="description">Description</label>
+            <input type="text" name="description" [(ngModel)]="description" id="description" placeholder="Description" class="field" />
+
+            <label for="elevator-pitch">Elevator Pitch</label>
+            <input type="text" name="elevator-pitch" [(ngModel)]="elevatorPitch" id="elevatorPitch" placeholder="Elevator Pitch" class="field" />
+
+            <label for="skills">Needed Skills</label>
+            <input type="text" name="skills" [(ngModel)]="skillsNeeded" id="skillsNeeded" placeholder="Skills" class="field" />
+
+            <input type="submit" value="Create Project" class="btn" >
+        </form>
+    </div>
+</div>
