@@ -6,4 +6,5 @@ export interface Project {
     skillsNeeded: string,
     owner: string,
     team: string
+    interested: string[]
 }

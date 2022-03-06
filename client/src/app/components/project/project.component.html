@@ -9,9 +9,17 @@
     <p>{{project.description}}</p>
     <h3>Skills Needed:</h3>
     <p>{{project.skillsNeeded}}</p>
+
+    <div class="list" *ngIf="project.owner === currentUser.name">
+        <h3>Interested People</h3>
+        <li *ngFor="let item of project.interested">
+            <a href="/user?name={{item}}">{{item}}</a>
+        </li>
+    </div>
+
 </div>
 
 <div class="footer">
-    <button>Request to Join Project</button>
-    <button>Edit Project</button>
+    <button *ngIf="project.owner !== currentUser.name" (click)="addInterested()">Request to Join Project</button>
+    <button *ngIf="project.owner === currentUser.name">Edit Project</button>
 </div>

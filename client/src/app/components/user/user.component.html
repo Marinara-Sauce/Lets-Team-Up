@@ -1,3 +1,35 @@
 <div user="user">
     <h1>User Page for {{user.name}}</h1>
+
+    <div class="section">
+        <h2 class="sectionHead">Skills:</h2>
+        <p class="section">{{user.skills}}</p>
+    </div>
+
+    <div class="section" *ngIf="user.email">
+        <h2 class="sectionHead">Email:</h2>
+        <p class="section">{{user.email}}</p>
+    </div>
+
+    <h2>Socials</h2>
+    <div class="socials">
+        <a *ngIf="user.linkedin" href="{{user.linkedin}}">LinkedIn</a>
+        <a *ngIf="user.twitter" href="{{user.twitter}}">Twitter</a>
+        <a *ngIf="user.github" href="{{user.github}}">Github</a>
+    </div>
+
+    <div class="section" *ngIf="user.linkedin">
+        
+    </div>
+
+    <div class="section" *ngIf="user.twitter">
+        <h2 class="sectionHead" *ngIf="user.linkedin">Twitter:</h2>
+        <p class="section">{{user.twitter}}</p>
+    </div>
+
+    <div class="section" *ngIf="user.github">
+        <h2 class="sectionHead" *ngIf="user.linkedin">GitHub:</h2>
+        <p class="section">{{user.github}}</p>
+    </div>
+    
 </div>

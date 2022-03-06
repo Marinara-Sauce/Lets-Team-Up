@@ -1,5 +1,6 @@
 package com.letsteamup.api.letsteamupapi.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,9 +24,10 @@ public class Project
 
     // -- Defined through updates -- //
     @JsonProperty String team;
+    @JsonProperty String[] interested;
 
     public Project(@JsonProperty int id, @JsonProperty String title, @JsonProperty String description, @JsonProperty String elevatorPitch,
-                    @JsonProperty String owner, @JsonProperty String skillsNeeded)
+                    @JsonProperty String owner, @JsonProperty String skillsNeeded, @JsonProperty String[] interested)
     {
         this.id = id;
         this.title = title;
@@ -33,6 +35,7 @@ public class Project
         this.elevatorPitch = elevatorPitch;
         this.owner = owner;
         this.skillsNeeded = skillsNeeded;
+        this.interested = interested;
     }
 
     public Project()
@@ -94,5 +97,21 @@ public class Project
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    public String[] interested() {
+        return interested;
+    }
+
+    public void addInterestedPerson(String name) {
+        List<String> interestedAlready = new ArrayList<>();
+        
+        for (String s : interested)
+            interestedAlready.add(s);
+
+        interestedAlready.add(name);
+        String[] interest = new String[interestedAlready.size()];
+        interestedAlready.toArray(interest);
+        interested = interest;
     }
 }

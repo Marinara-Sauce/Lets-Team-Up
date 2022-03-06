@@ -63,8 +63,7 @@ export class UserAccountsService {
 
   getUser(name: string): Observable<User> {
     const url=`${this.url}/${name}`;
-    console.log("Sending get to: " + url);
-    return this.http.get<User>(name);
+    return this.http.get<User>(url);
   }
 
   logOut(): void {

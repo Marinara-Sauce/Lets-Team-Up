@@ -38,4 +38,15 @@ export class ProjectsService {
     const url = `${this.url}/recommended`;
     return this.httpClient.post<Project[]>(url, skills, httpOptionsText);
   }
+
+  addInterested(name: String, project: Project): Observable<Project> {
+
+    const interested = {
+      name: name,
+      project: project
+    }
+
+    return this.httpClient.put<Project>(this.url, interested, httpOptions);
+
+  } 
 }

@@ -112,7 +112,7 @@ public class ProjectDAOFile
         {
             Project newProject = new Project(nextId(), p.getTitle(), 
                                     p.getDescription(), p.getElevatorPitch(),
-                                    p.getOwner(), p.getSkillsNeeded());
+                                    p.getOwner(), p.getSkillsNeeded(), p.interested());
             
             projects.put(newProject.getId(), newProject);
             save();
@@ -133,6 +133,18 @@ public class ProjectDAOFile
         }
     }
 
-    
+    public Project addInterestedMember(int projectId, String name) throws IOException
+    {
+        synchronized(projects)
+        {
+            if (!projects.containsKey(projectId))
+                return null;
+            
+            projects.get(projectId).addInterestedPerson(name);
+
+            save();
+            return projects.get(projectId);
+        }
+    }
 
 }

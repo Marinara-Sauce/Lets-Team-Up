@@ -43,7 +43,8 @@ export class CreateProjectComponent implements OnInit {
       elevatorPitch: this.elevatorPitch,
       skillsNeeded: this.skillsNeeded,
       owner: this.user.name,
-      team: ""
+      team: "",
+      interested: []
     }
 
     this.projectService.createProject(project).subscribe(project => {

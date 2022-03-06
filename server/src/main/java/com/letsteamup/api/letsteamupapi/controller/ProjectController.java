@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.letsteamup.api.letsteamupapi.model.Interested;
 import com.letsteamup.api.letsteamupapi.model.Project;
 import com.letsteamup.api.letsteamupapi.persistence.ProjectDAOFile;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -117,6 +119,25 @@ public class ProjectController
                 return new ResponseEntity<>(HttpStatus.OK);
 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Project> addInterestedPerson(@RequestBody Interested i)
+    {
+        LOG.info("POST /project");
+
+        try {
+            Project p = projectDao.addInterestedMember(i.getProject().getId(), i.getName());
+
+            if (p == null)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            
+            return new ResponseEntity<Project>(p, HttpStatus.OK);
+
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

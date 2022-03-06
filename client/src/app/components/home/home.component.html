@@ -8,7 +8,7 @@
     <h1>Featured Projects</h1>
     <div class="projects">
         <li *ngFor="let item of projects">
-            <app-project-list [project]="item"></app-project-list>
+            <app-project-list *ngIf="item" [project]="item"></app-project-list>
         </li>
     </div>
 </div>

@@ -10,22 +10,26 @@ import { UserAccountsService } from 'src/app/services/user-accounts.service';
 })
 export class UserComponent implements OnInit {
 
+  name!: string;
   user!: User;
 
   constructor(private userService: UserAccountsService, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
-      if (params['name'] !== undefined || params['name'] !== null)
+      if (params['name'] !== undefined && params['name'] !== null)
       {
-        this.getUser(params['name']);
+        console.log(params['name']);
+        this.userService.getUser(params['name']).subscribe((value) => this.user = value);
       }
-    })
+    });
   }
 
   ngOnInit(): void {
+    
   }
 
   getUser(name: string) {
     this.userService.getUser(name).subscribe((user) => {
+      this.user = user;
       console.log(user);
     });
   }
