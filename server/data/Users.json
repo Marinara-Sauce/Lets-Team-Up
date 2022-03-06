@@ -1,1 +1,1 @@
-[]
+[{"id":1,"name":"Daniel","passwordHash":"abc","skills":"java, python, C","twitter":"","linkedin":"","github":"","email":"dan@example.com","exposeEmail":true},{"id":2,"name":"Heather","passwordHash":"abc","skills":"","twitter":"","linkedin":"","github":"","email":"","exposeEmail":false},{"id":3,"name":"Kathryn","passwordHash":"abc","skills":"","twitter":"","linkedin":"","github":"","email":"","exposeEmail":false},{"id":4,"name":"Pete","passwordHash":"abc","skills":"","twitter":"","linkedin":"","github":"","email":"","exposeEmail":false}]

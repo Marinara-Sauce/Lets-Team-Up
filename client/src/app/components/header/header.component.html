@@ -1,0 +1,22 @@
+<div class="header">
+    <a href="/" class="active">Home</a>
+    <a href="/createaccount" *ngIf="!currentUser">Create Account</a>
+    <a href="/editaccount" *ngIf="currentUser">Edit Account</a>
+
+    <div class="login-contianer" *ngIf="!currentUser">
+        <form class="login-form">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" [(ngModel)]="username" placeholder="Username" class="field" />
+
+            <label for="username">Password</label>
+            <input type="password" name="password" id="password" [(ngModel)]="password" placeholder="Password" class="field" />
+
+            <input type="submit" value="Login" class="btn" (click)="login()">
+        </form>
+    </div>
+
+    <div class="logged-in-container" *ngIf="currentUser">
+        <p>Welcome, {{currentUser.name}}!</p>
+        <button class="btn" (click)="logout()">Logout</button>
+    </div>
+</div>

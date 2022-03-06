@@ -3,24 +3,25 @@ package com.letsteamup.api.letsteamupapi.controller;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import com.letsteamup.api.letsteamupapi.model.LoginAttempt;
 import com.letsteamup.api.letsteamupapi.model.User;
 import com.letsteamup.api.letsteamupapi.persistence.UserDAOFile;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * HTTP Controller for users
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController 
 {
 
@@ -39,33 +40,40 @@ public class UserController
      * @param username the username
      * @return OK if the user is found and the user
      */
-    @GetMapping("/name={name}")
-    public ResponseEntity<User[]> getUser(@RequestParam String username)
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username)
     {
-        LOG.info("GET /user/name=" + username);
+        LOG.info("GET /user/" + username);
 
-        User[] users = userDao.getUsersArray(username);
+        User users = userDao.getUsersArray(username)[0];
 
-        return new ResponseEntity<User[]>(users, HttpStatus.OK);
+        return new ResponseEntity<User>(users, HttpStatus.OK);
     }
 
-    /**
-     * Fetches a user with an ID
-     * 
-     * @param id the id
-     * @return OK if the user is found, NOT_FOUND if they don't exist
-     */
-    @GetMapping("/id={}")
-    public ResponseEntity<User> getUser(@RequestParam int id)
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody LoginAttempt attempt)
     {
-        LOG.info("GET /user/id=" + id);
+        LOG.info("POST /user/login");
 
-        User user = userDao.getUser(id);
+        User[] user = userDao.getUsersArray(attempt.getName());
 
-        if (user == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (user.length == 0)
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
+        if (user[0].getPasswordHash().equals(attempt.getPassword()))
+            return new ResponseEntity<User>(user[0], HttpStatus.OK);
         
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<User[]> getUsers()
+    {
+        LOG.info("GET /user");
+
+        User[] users = userDao.getUsersArray(null);
+
+        return new ResponseEntity<User[]>(users, HttpStatus.OK);
     }
 
     /**

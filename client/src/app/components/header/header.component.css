@@ -1,0 +1,88 @@
+* { 
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+}
+
+.header {
+    margin: auto;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #2196F3;
+}
+
+.header .login-container {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 150px;
+}
+
+.header a {
+    float: left;
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.header a:active {
+    background-color: #21f321;
+    color: white;
+}
+
+.header .login-form {
+    float: right;
+}
+
+.header .login-contianer .field {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: black;
+}
+
+.btn {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ababab;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.header .logged-in-container {
+    float: right;
+    font-size: 17px;
+    border: none;
+    margin: 0;
+    top: 50%;
+    margin-right: 8px;
+    margin-left: 16px;
+}
+
+.header .logged-in-container p {
+    margin-bottom: 8px;
+    font-size: 17px;
+    float: left;
+    padding-right: 16px;
+    text-align: center;
+}
