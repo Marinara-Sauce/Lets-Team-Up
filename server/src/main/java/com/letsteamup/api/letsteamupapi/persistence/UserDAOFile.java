@@ -11,14 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.letsteamup.api.letsteamupapi.model.User;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * DAO for the User JSON file
  */
-@Service
-@Repository
+@Component
 public class UserDAOFile 
 {
     private Map<Integer, User> users;
@@ -80,18 +78,17 @@ public class UserDAOFile
 
     public User[] getUsersArray(String containsName)
     {
-        if (containsName == null)
-            return (User[]) users.values().toArray();
-
         List<User> usersWithName = new ArrayList<>();
-        
-        for (User u : (User[]) users.values().toArray())
+
+        for (User u : users.values())
         {
-            if (u.getName().equals(containsName))
+            if (containsName == null || u.getName().equals(containsName))
                 usersWithName.add(u);
         }
 
-        return (User[]) usersWithName.toArray();
+        User[] usersArray = new User[usersWithName.size()];
+        usersWithName.toArray(usersArray);
+        return usersArray;
     }
 
     public User getUser(int id)

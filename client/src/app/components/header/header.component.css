@@ -68,3 +68,21 @@
     border: none;
     cursor: pointer;
 }
+
+.header .logged-in-container {
+    float: right;
+    font-size: 17px;
+    border: none;
+    margin: 0;
+    top: 50%;
+    margin-right: 8px;
+    margin-left: 16px;
+}
+
+.header .logged-in-container p {
+    margin-bottom: 8px;
+    font-size: 17px;
+    float: left;
+    padding-right: 16px;
+    text-align: center;
+}

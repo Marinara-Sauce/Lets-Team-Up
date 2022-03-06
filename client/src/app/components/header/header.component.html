@@ -3,15 +3,21 @@
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
 
-    <div class="login-contianer">
+    <div class="login-contianer" *ngIf="!currentUser">
         <form class="login-form">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" class="field" />
+            <input type="text" name="username" id="username" [(ngModel)]="username" placeholder="Username" class="field" />
 
             <label for="username">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" class="field" />
+            <input type="password" name="password" id="password" [(ngModel)]="password" placeholder="Password" class="field" />
 
-            <input type="submit" value="Login" class="btn">
+            <input type="submit" value="Login" class="btn" (click)="login()">
         </form>
+    </div>
+
+    <div class="logged-in-container" *ngIf="currentUser">
+        <!-- <p class="username">Welcome: Dan! <button class="btn" (click)="logout()">Logout</button></p> -->
+        <p>Welcome, Dan!</p>
+        <button class="btn" (click)="logout()">Logout</button>
     </div>
 </div>

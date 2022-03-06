@@ -17,7 +17,7 @@ public class User
     @JsonProperty private String name; //Username
     @JsonProperty private String passwordHash; //Password (as a hash)
 
-    @JsonProperty private List<Skills> skills; //User's skills
+    @JsonProperty private String skills; //User's skills
 
     @JsonProperty private String twitter; //User's twitter
     @JsonProperty private String linkedin; //User's linkedin
@@ -27,8 +27,8 @@ public class User
     @JsonProperty private boolean exposeEmail; //Whether it expose the email address
 
     public User(@JsonProperty int id, @JsonProperty String name, @JsonProperty String passwordHash,
-                @JsonProperty String twitter, @JsonProperty String linkedin, @JsonProperty String github,
-                @JsonProperty String email, @JsonProperty boolean exposeEmail, @JsonProperty List<Skills> skills)
+                @JsonProperty String skills, @JsonProperty String linkedin, @JsonProperty String twitter,
+                @JsonProperty String github, @JsonProperty boolean exposeEmail, @JsonProperty String email)
     {
         this.id = id;
         this.name = name;
@@ -39,6 +39,11 @@ public class User
         this.github = github;
         this.email = email;
         this.exposeEmail = exposeEmail;
+    }
+
+    public User()
+    {
+        
     }
 
     public int getId() {
@@ -53,7 +58,7 @@ public class User
         return passwordHash;
     }
 
-    public List<Skills> getSkills() {
+    public String getSkills() {
         return skills;
     }
 

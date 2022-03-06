@@ -9,6 +9,7 @@ import com.letsteamup.api.letsteamupapi.persistence.UserDAOFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * HTTP Controller for users
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController 
 {
 
@@ -39,12 +40,22 @@ public class UserController
      * @param username the username
      * @return OK if the user is found and the user
      */
-    @GetMapping("/name={name}")
-    public ResponseEntity<User[]> getUser(@RequestParam String username)
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username)
     {
-        LOG.info("GET /user/name=" + username);
+        LOG.info("GET /user/" + username);
 
-        User[] users = userDao.getUsersArray(username);
+        User users = userDao.getUsersArray(username)[0];
+
+        return new ResponseEntity<User>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<User[]> getUsers()
+    {
+        LOG.info("GET /user");
+
+        User[] users = userDao.getUsersArray(null);
 
         return new ResponseEntity<User[]>(users, HttpStatus.OK);
     }

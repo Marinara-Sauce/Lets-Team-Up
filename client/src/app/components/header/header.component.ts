@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
+import { UserAccountsService } from 'src/app/services/user-accounts.service';
+import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  currentUser!: User;
+  
+  username!: string;
+  password!: string;
+
+  subscription: Subscription;
+
+  constructor(private userAccountService: UserAccountsService) { 
+    this.subscription = this.userAccountService.onLogin().subscribe(
+      value => this.currentUser = value
+    );
+  }
 
   ngOnInit(): void {
+  }
+
+  login(): void {
+    this.userAccountService.logIntoAccount(this.username).subscribe(response => {
+      if (response !== undefined)
+      {
+        this.userAccountService.setUser(response);
+      }
+    });
+  }
+
+  logout(): void {
+    this.userAccountService.logOut();
   }
 
 }
