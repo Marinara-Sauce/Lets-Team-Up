@@ -1,6 +1,8 @@
 package com.letsteamup.api.letsteamupapi.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.letsteamup.api.letsteamupapi.model.Project;
@@ -46,6 +48,38 @@ public class ProjectController
 
         return new ResponseEntity<Project[]>(projectDao.getProjectsArray(null), HttpStatus.OK);
     }
+
+    @PostMapping("/recommended")
+    public ResponseEntity<Project[]> getRecommendedProjects(@RequestBody String skills)
+    {
+        LOG.info("POST /project/recommended " + skills);
+
+        Project[] projects = projectDao.getProjectsArray(null);
+        String[] skillList = skills.split(", ");
+
+        List<Project> recommendedProjects = new ArrayList<>();
+
+        for (Project p : projects)
+        {
+            String[] projectSkillList = p.getSkillsNeeded().split(", ");
+
+            for (String s : projectSkillList)
+            {
+                for (String sp : skillList)
+                {
+                    if (s.equalsIgnoreCase(sp) && !recommendedProjects.contains(p))
+                        recommendedProjects.add(p);
+                    
+                    break;
+                }
+            }
+        }
+
+        Project[] projectsList = new Project[recommendedProjects.size()];
+        recommendedProjects.toArray(projectsList);
+        return new ResponseEntity<Project[]>(projectsList, HttpStatus.OK);
+    }
+
 
     @GetMapping("/search/{name}")
     public ResponseEntity<Project[]> searchProject(@PathVariable String name)

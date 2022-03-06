@@ -98,7 +98,7 @@ public class UserDAOFile
             if (users.containsKey(name))
                 return users.get(name);
             
-                return null;
+            return null;
         }
     }
 

@@ -17,13 +17,15 @@ import { LoginReminderComponent } from './components/login-reminder/login-remind
 import { ProjectComponent } from './components/project/project.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
+import { UserComponent } from './components/user/user.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'createaccount', component: CreateAccountComponent},
   {path: 'editaccount', component: EditUserComponent},
   {path: 'project', component: ProjectComponent},
-  {path: 'createproject', component: CreateProjectComponent}
+  {path: 'createproject', component: CreateProjectComponent},
+  {path: 'user', component: UserComponent}
 ]
 
 @NgModule({
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     LoginReminderComponent,
     ProjectComponent,
     CreateProjectComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

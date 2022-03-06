@@ -61,6 +61,12 @@ export class UserAccountsService {
     return this.http.put<User>(this.url, user, httpOptions);
   }
 
+  getUser(name: string): Observable<User> {
+    const url=`${this.url}/${name}`;
+    console.log("Sending get to: " + url);
+    return this.http.get<User>(name);
+  }
+
   logOut(): void {
     this.setUser(null);
     localStorage.clear();

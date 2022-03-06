@@ -9,6 +9,12 @@ const httpOptions = {
   })
 }
 
+const httpOptionsText = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +34,8 @@ export class ProjectsService {
     return this.httpClient.post<Project>(this.url, project, httpOptions);
   }
 
-  getProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>(this.url);
+  getProjects(skills: String): Observable<Project[]> {
+    const url = `${this.url}/recommended`;
+    return this.httpClient.post<Project[]>(url, skills, httpOptionsText);
   }
 }

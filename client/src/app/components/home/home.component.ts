@@ -18,11 +18,14 @@ export class HomeComponent implements OnInit {
   projects!: Project[];
 
   constructor(private projectService: ProjectsService, private userService: UserAccountsService) { 
-    this.subscription = this.userService.onLogin().subscribe((value) => this.user = value);
+    this.subscription = this.userService.onLogin().subscribe((value) => {
+      this.user = value
+      this.projectService.getProjects(this.user.skills).subscribe((value) => this.projects = value);
+    });
   }
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((value) => this.projects = value);
+
   }
 
 }

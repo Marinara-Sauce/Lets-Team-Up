@@ -45,7 +45,7 @@ public class UserController
     {
         LOG.info("GET /user/" + username);
 
-        User users = userDao.getUsersArray(username)[0];
+        User users = userDao.getUser(username);
 
         return new ResponseEntity<User>(users, HttpStatus.OK);
     }
