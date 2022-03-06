@@ -16,8 +16,7 @@
     </div>
 
     <div class="logged-in-container" *ngIf="currentUser">
-        <!-- <p class="username">Welcome: Dan! <button class="btn" (click)="logout()">Logout</button></p> -->
-        <p>Welcome, Dan!</p>
+        <p>Welcome, {{currentUser.name}}!</p>
         <button class="btn" (click)="logout()">Logout</button>
     </div>
 </div>

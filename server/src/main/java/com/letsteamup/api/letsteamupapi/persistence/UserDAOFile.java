@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDAOFile 
 {
-    private Map<Integer, User> users;
+    private Map<String, User> users;
 
     private String filename;
     private ObjectMapper mapper;
@@ -51,7 +51,7 @@ public class UserDAOFile
 
         for (User u : usersArray)
         {
-            users.put(u.getId(), u);
+            users.put(u.getName(), u);
             if (u.getId() > nextId)
                 nextId = u.getId();
         }
@@ -91,12 +91,12 @@ public class UserDAOFile
         return usersArray;
     }
 
-    public User getUser(int id)
+    public User getUser(String name)
     {
         synchronized (users)
         {
-            if (users.containsKey(id))
-                return users.get(id);
+            if (users.containsKey(name))
+                return users.get(name);
             
                 return null;
         }
@@ -106,11 +106,14 @@ public class UserDAOFile
     {
         synchronized(users)
         {
+            if (users.containsKey(u.getName()))
+                return null;
+
             User newUser = new User(nextId(), u.getName(), u.getPasswordHash(), 
                                     u.getTwitter(), u.getLinkedin(), u.getGithub(), 
                                     u.getEmail(), u.isExposeEmail(), u.getSkills());
 
-            users.put(newUser.getId(), newUser);
+            users.put(newUser.getName(), newUser);
             save();
             return newUser;
         }
@@ -120,10 +123,10 @@ public class UserDAOFile
     {
         synchronized(users)
         {
-            if (!users.containsKey(u.getId()))
+            if (!users.containsKey(u.getName()))
                 return null;
 
-            users.put(u.getId(), u);
+            users.put(u.getName(), u);
             save();
             return u;
         }
