@@ -3,6 +3,7 @@ package com.letsteamup.api.letsteamupapi.controller;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import com.letsteamup.api.letsteamupapi.model.LoginAttempt;
 import com.letsteamup.api.letsteamupapi.model.User;
 import com.letsteamup.api.letsteamupapi.persistence.UserDAOFile;
 
@@ -48,6 +49,22 @@ public class UserController
         User users = userDao.getUsersArray(username)[0];
 
         return new ResponseEntity<User>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody LoginAttempt attempt)
+    {
+        LOG.info("POST /user/login");
+
+        User[] user = userDao.getUsersArray(attempt.getName());
+
+        if (user.length == 0)
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
+        if (user[0].getPasswordHash().equals(attempt.getPassword()))
+            return new ResponseEntity<User>(user[0], HttpStatus.OK);
+        
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("")

@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login(): void {
-    this.userAccountService.logIntoAccount(this.username).subscribe(response => {
+    this.userAccountService.logIntoAccount(this.username, this.password).subscribe(response => {
       if (response !== undefined)
       {
         this.userAccountService.setUser(response);

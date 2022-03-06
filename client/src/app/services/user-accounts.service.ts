@@ -9,6 +9,12 @@ const httpOptions = {
   })
 }
 
+const httpTextOption = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,9 +40,16 @@ export class UserAccountsService {
     return this.http.post<User>(this.url, user, httpOptions);
   }
 
-  logIntoAccount(name: string): Observable<User> {
-    const url = `${this.url}/${name}`;
-    return this.http.get<User>(url);
+  logIntoAccount(username: string, enteredPassword: string): Observable<User> {
+    const url = `${this.url}/login`;
+
+    const loginAttempt = {
+      name: username,
+      password: enteredPassword
+    }
+
+    console.log(loginAttempt);
+    return this.http.post<User>(url, loginAttempt, httpOptions);
   }
 
   logOut(): void {

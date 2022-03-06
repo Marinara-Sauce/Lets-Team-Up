@@ -1,9 +1,6 @@
 package com.letsteamup.api.letsteamupapi.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.letsteamup.api.letsteamupapi.util.Skills;
 
 /**
  * Class represents a user, storing skills, socials, and information
