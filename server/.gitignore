@@ -33,3 +33,4 @@ build/
 
 ### JSON Database ###
 data/Users.json
+data/Products.json
