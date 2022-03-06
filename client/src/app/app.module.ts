@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginReminderComponent } from './components/login-reminder/login-reminder.component';
 import { ProjectComponent } from './components/project/project.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginReminderComponent,
     ProjectComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,

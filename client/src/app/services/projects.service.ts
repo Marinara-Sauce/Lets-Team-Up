@@ -27,4 +27,8 @@ export class ProjectsService {
     console.log(project);
     return this.httpClient.post<Project>(this.url, project, httpOptions);
   }
+
+  getProjects(): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(this.url);
+  }
 }

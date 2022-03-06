@@ -1,0 +1,38 @@
+* { 
+    box-sizing: border-box;
+}
+
+div {
+    border: 3px solid black;
+    cursor: pointer;
+    background-color: white;
+}
+
+h3 {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+p {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+p a {
+    text-decoration: underline;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+div:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+div:active {
+    background-color: #ddd;
+    color: black;
+}

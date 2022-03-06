@@ -39,6 +39,14 @@ public class ProjectController
         return new ResponseEntity<Project>(p, HttpStatus.OK);
     }
 
+    @GetMapping("")
+    public ResponseEntity<Project[]> getProjects()
+    {
+        LOG.info("GET /project");
+
+        return new ResponseEntity<Project[]>(projectDao.getProjectsArray(null), HttpStatus.OK);
+    }
+
     @GetMapping("/search/{name}")
     public ResponseEntity<Project[]> searchProject(@PathVariable String name)
     {

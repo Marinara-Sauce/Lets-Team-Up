@@ -4,12 +4,19 @@
 
 header {
     float: top;
+    overflow-x: hidden;
 }
 
 body {
+    height: 100%;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 75px;
+    margin-bottom: 75px;
 }
 
 footer {
+    overflow-x: hidden;
     float: bottom;
 }

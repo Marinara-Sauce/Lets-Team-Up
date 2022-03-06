@@ -1,3 +1,14 @@
-<h1>Let's Team Up!</h1>
-<h3>Want to make something great? Look here!</h3>
-<h1>This site is under heavy construction!</h1>
+<div class="home" *ngIf="!user">
+    <h1>Let's Team Up!</h1>
+    <h3>Want to make something great? Look here!</h3>
+    <h1>This site is under heavy construction!</h1>
+</div>
+
+<div class="loggedIn" *ngIf="user">
+    <h1>Featured Projects</h1>
+    <div class="projects">
+        <li *ngFor="let item of projects">
+            <app-project-list [project]="item"></app-project-list>
+        </li>
+    </div>
+</div>
